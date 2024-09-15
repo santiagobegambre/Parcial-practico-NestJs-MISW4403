@@ -1,44 +1,75 @@
-import { Controller, Post, Get, Put, Delete, Param, Body } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Get,
+  Put,
+  Delete,
+  Param,
+  Body,
+  HttpCode,
+  HttpStatus,
+} from '@nestjs/common';
 import { CiudadSupermercadoService } from './ciudad-supermercado.service';
+import { Supermercado } from '../supermercado/supermercado.entity/supermercado.entity';
 
-@Controller('ciudades')
+@Controller('cities')
 export class CiudadSupermercadoController {
-  constructor(private readonly ciudadSupermercadoService: CiudadSupermercadoService) {}
+  constructor(
+    private readonly ciudadSupermercadoService: CiudadSupermercadoService,
+  ) {}
 
-  @Post(':ciudadId/supermercados/:supermercadoId')
-  addSupermarketToCity(
+  @Post(':ciudadId/supermarkets/:supermercadoId')
+  @HttpCode(HttpStatus.CREATED)
+  async addSupermarketToCity(
     @Param('ciudadId') ciudadId: string,
     @Param('supermercadoId') supermercadoId: string,
   ) {
-    return this.ciudadSupermercadoService.addSupermarketToCity(ciudadId, supermercadoId);
+    return await this.ciudadSupermercadoService.addSupermarketToCity(
+      ciudadId,
+      supermercadoId,
+    );
   }
 
-  @Get(':ciudadId/supermercados')
-  findSupermarketsFromCity(@Param('ciudadId') ciudadId: string) {
-    return this.ciudadSupermercadoService.findSupermarketsFromCity(ciudadId);
+  @Get(':ciudadId/supermarkets')
+  async findSupermarketsFromCity(
+    @Param('ciudadId') ciudadId: string,
+  ): Promise<Supermercado[]> {
+    return await this.ciudadSupermercadoService.findSupermarketsFromCity(
+      ciudadId,
+    );
   }
 
-  @Get(':ciudadId/supermercados/:supermercadoId')
-  findSupermarketFromCity(
+  @Get(':ciudadId/supermarkets/:supermercadoId')
+  async findSupermarketFromCity(
     @Param('ciudadId') ciudadId: string,
     @Param('supermercadoId') supermercadoId: string,
-  ) {
-    return this.ciudadSupermercadoService.findSupermarketFromCity(ciudadId, supermercadoId);
+  ): Promise<Supermercado> {
+    return await this.ciudadSupermercadoService.findSupermarketFromCity(
+      ciudadId,
+      supermercadoId,
+    );
   }
 
-  @Put(':ciudadId/supermercados')
-  updateSupermarketsFromCity(
+  @Put(':ciudadId/supermarkets')
+  async updateSupermarketsFromCity(
     @Param('ciudadId') ciudadId: string,
     @Body('supermercadosIds') supermercadosIds: string[],
-  ) {
-    return this.ciudadSupermercadoService.updateSupermarketsFromCity(ciudadId, supermercadosIds);
+  ): Promise<void> {
+    await this.ciudadSupermercadoService.updateSupermarketsFromCity(
+      ciudadId,
+      supermercadosIds,
+    );
   }
 
-  @Delete(':ciudadId/supermercados/:supermercadoId')
-  deleteSupermarketFromCity(
+  @Delete(':ciudadId/supermarkets/:supermercadoId')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async deleteSupermarketFromCity(
     @Param('ciudadId') ciudadId: string,
     @Param('supermercadoId') supermercadoId: string,
-  ) {
-    return this.ciudadSupermercadoService.deleteSupermarketFromCity(ciudadId, supermercadoId);
+  ): Promise<void> {
+    await this.ciudadSupermercadoService.deleteSupermarketFromCity(
+      ciudadId,
+      supermercadoId,
+    );
   }
 }

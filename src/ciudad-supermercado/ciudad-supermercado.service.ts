@@ -68,10 +68,26 @@ export class CiudadSupermercadoService {
   async deleteSupermarketFromCity(ciudadId: string, supermercadoId: string): Promise<void> {
     const ciudad = await this.ciudadRepository.findOne({ where: { id: ciudadId }, relations: ['supermercados'] });
     if (!ciudad) {
-      throw new NotFoundException(`Ciudad con id ${ciudadId} no encontrada`);
+      throw new NotFoundException(`La ciudad con el id ${ciudadId} no fue encontrada`);
     }
 
-    ciudad.supermercados = ciudad.supermercados.filter((s) => s.id !== supermercadoId);
+    const supermercado = await this.supermercadoRepository.findOne({ where: { id: supermercadoId } });
+    if (!supermercado) {
+      throw new NotFoundException(`El supermercado con el id ${supermercadoId} no fue encontrado`);
+    }
+
+    const supermercadoAsociado = ciudad.supermercados.find(
+      (s) => s.id === supermercado.id,
+    );
+    if (!supermercadoAsociado) {
+      throw new NotFoundException(
+        `El supermercado con el id ${supermercadoId} no está asociado a la ciudad con el id ${ciudadId}`,
+      );
+    }
+
+    ciudad.supermercados = ciudad.supermercados.filter(
+      (s) => s.id !== supermercadoId,
+    );
     await this.ciudadRepository.save(ciudad);
   }
 }
