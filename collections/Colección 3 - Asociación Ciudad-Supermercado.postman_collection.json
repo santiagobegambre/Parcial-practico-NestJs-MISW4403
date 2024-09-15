@@ -1,0 +1,223 @@
+{
+	"info": {
+		"_postman_id": "07c1496a-12f7-4c46-b080-7c07ae3dd1a9",
+		"name": "Colección 3 - Asociación Ciudad-Supermercado",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26723650"
+	},
+	"item": [
+		{
+			"name": "Asociar un nuevo supermercado a una ciudad",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/cities/93064cc8-2b39-4ef5-839f-53843dc506df/supermarkets/0a63488b-f5be-4b3e-b483-c768cd7aa05e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cities",
+						"93064cc8-2b39-4ef5-839f-53843dc506df",
+						"supermarkets",
+						"0a63488b-f5be-4b3e-b483-c768cd7aa05e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar un supermercado que no existe a una ciudad",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/cities/be49bad2-6962-4ad0-a99a-0106ee19fc14/supermarkets/9999",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cities",
+						"be49bad2-6962-4ad0-a99a-0106ee19fc14",
+						"supermarkets",
+						"9999"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los supermercados que pertenecen a una ciudad",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/cities/be49bad2-6962-4ad0-a99a-0106ee19fc14/supermarkets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cities",
+						"be49bad2-6962-4ad0-a99a-0106ee19fc14",
+						"supermarkets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un supermercado asociado a una ciudad",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/cities/be49bad2-6962-4ad0-a99a-0106ee19fc14/supermarkets/2a714e90-0965-4375-b01b-8ba8412405c9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cities",
+						"be49bad2-6962-4ad0-a99a-0106ee19fc14",
+						"supermarkets",
+						"2a714e90-0965-4375-b01b-8ba8412405c9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un supermercado que no está asociado a una ciudad",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/cities/be49bad2-6962-4ad0-a99a-0106ee19fc14/supermarkets/90816da0-49fc-4c63-917a-ec95af2c7b44",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cities",
+						"be49bad2-6962-4ad0-a99a-0106ee19fc14",
+						"supermarkets",
+						"90816da0-49fc-4c63-917a-ec95af2c7b44"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar los supermercados que están asociados a una ciudad",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"supermercadosIds\": [\"2a714e90-0965-4375-b01b-8ba8412405c9\", \"90816da0-49fc-4c63-917a-ec95af2c7b44\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/cities/be49bad2-6962-4ad0-a99a-0106ee19fc14/supermarkets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cities",
+						"be49bad2-6962-4ad0-a99a-0106ee19fc14",
+						"supermarkets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar los supermercados asociados a una ciudad con un supermercado inexistente",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"supermercadosIds\": [\"2a714e90-0965-4375-b01b-8ba8412405c9\", \"9999\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/cities/be49bad2-6962-4ad0-a99a-0106ee19fc14/supermarkets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cities",
+						"be49bad2-6962-4ad0-a99a-0106ee19fc14",
+						"supermarkets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un supermercado asociado a una ciudad",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/cities/93064cc8-2b39-4ef5-839f-53843dc506df/supermarkets/0a63488b-f5be-4b3e-b483-c768cd7aa05e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cities",
+						"93064cc8-2b39-4ef5-839f-53843dc506df",
+						"supermarkets",
+						"0a63488b-f5be-4b3e-b483-c768cd7aa05e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un supermercado que no estaba previamente asociado a una ciudad",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/cities/c16446cc-603e-4763-b6b4-0cfd25a32353/supermarkets/6da287e5-2a3b-42b5-8e83-255fbebda136",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cities",
+						"c16446cc-603e-4763-b6b4-0cfd25a32353",
+						"supermarkets",
+						"6da287e5-2a3b-42b5-8e83-255fbebda136"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
